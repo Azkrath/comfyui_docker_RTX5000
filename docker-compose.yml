@@ -1,0 +1,33 @@
+services:
+  comfyui:
+    image: nvcr.io/nvidia/pytorch:25.01-py3
+    container_name: comfyui-pytorch
+    ports:
+      - "8188:8188"
+    volumes:
+      - comfyui_data:/workspace/ComfyUI  # Store ComfyUI persistently
+      - ~/comfyui_shared/models:/mnt/models # Temporarily mount models folder
+      - ~/comfyui_shared/custom_nodes:/mnt/custom_nodes # Temporarily mount custom nodes folder
+      - ~/comfyui_shared/workflows:/mnt/workflows # Temporarily mount workflows folder
+      - ~/comfyui_shared/output:/mnt/output # Temporarily mount output folder
+      - ./setup_and_run.sh:/workspace/setup_and_run.sh
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    entrypoint: ["/bin/bash", "-c"]  # Allow multiple commands
+    command:
+      - "/bin/bash /workspace/setup_and_run.sh"
+
+volumes:
+  comfyui_data:  # Persistent volume for ComfyUI
