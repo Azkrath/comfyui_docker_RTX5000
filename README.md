@@ -37,7 +37,7 @@ volumes:
   - ~/comfyui_docker_RTX5000/workflows:/mnt/workflows
   - ~/comfyui_docker_RTX5000/output:/mnt/output
 ```
-**Start the container (on the WSL2 file system, through Windows):**
+**Start the container (on the WSL2):**
 ```
 docker-compose up -d
 ```
