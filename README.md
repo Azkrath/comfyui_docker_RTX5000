@@ -21,7 +21,14 @@ Ensure you have the following installed:
 git clone https://github.com/Azkrath/comfyui_docker_RTX5000.git
 cd comfyui_docker_RTX5000
 ```
-**Modify folder paths (if needed)**:
+**Move repository to WSL2 file system (Recommended for performance):**
+
+If you are running Windows, it is highly recommended to store the repository inside the WSL2 file system (e.g., under ~/) instead of the Windows-mounted C: drive. Running from NTFS can significantly slow down model loading and checkpoint access.
+```
+mv /mnt/c/Users/YOUR_USER/comfyui_docker_RTX5000 ~/comfyui_docker_RTX5000
+```
+**Modify folder paths (if needed):**
+
 The docker-compose.yml file mounts external directories for models, workflows, custom nodes, and output. Update these paths in the file if your folders are located elsewhere:
 ```
 volumes:
@@ -30,7 +37,7 @@ volumes:
   - ~/comfyui_docker_RTX5000/workflows:/mnt/workflows
   - ~/comfyui_docker_RTX5000/output:/mnt/output
 ```
-Start the container:
+**Start the container (on the WSL2 file system, through Windows):**
 ```
 docker-compose up -d
 ```
@@ -46,7 +53,8 @@ This will:
 
 * Restart the container after the initial setup.
 
-Access ComfyUI:
+**Access ComfyUI:**
+
 Once the container is running, open your browser and navigate to:
 ```
 http://localhost:8188
