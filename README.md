@@ -1,6 +1,6 @@
 ## ComfyUI Docker Setup (WSL2) ##
 
-This repository provides a setup for running ComfyUI using Docker with GPU support on WSL2.
+This repository provides a setup for running ComfyUI using Docker with GPU (Blackwell, 5000 series architecture) support on WSL2.
 
 ### Prerequisites ###
 
