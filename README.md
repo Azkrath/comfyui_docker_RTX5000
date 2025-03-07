@@ -37,6 +37,15 @@ volumes:
   - ~/comfyui_docker_RTX5000/workflows:/mnt/workflows
   - ~/comfyui_docker_RTX5000/output:/mnt/output
 ```
+**Ensure Docker is accessible inside WSL2:**
+
+You do not need to install Docker separately inside WSL2 if Docker Desktop is installed on Windows with WSL2 integration enabled. Check if Docker is accessible in WSL2 by running:
+```
+docker --version
+docker-compose --version
+```
+If these commands work inside your WSL2 terminal, Docker is correctly integrated.
+
 **Start the container (on the WSL2):**
 ```
 docker-compose up -d
